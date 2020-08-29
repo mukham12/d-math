@@ -1,28 +1,40 @@
 body {
 	margin: 0;
 	background-color: bisque;
+	text-align: center;
 }
 
 .container {
 	text-align: center;
+	border-radius: 10px;
+	border: 5px solid #b71232;
+	display: inline-block;
+	vertical-align: top;
 	font-size: 20px;
 	margin-top: -25px;
 	margin-right: auto;
 	margin-left: auto;
+	min-width: 800px;
 }
 
 table {
 	margin-top: 25px;
 	border-collapse: collapse;
-	border: 2px solid black;
 	margin-right: auto;
 	margin-left: auto;
+	background: #fafafa;
+	margin-bottom: 50px;
 }
 
 td {
 	text-align: center;
 	border: 1px solid black;
-  padding: 10px;
-  font-size: 20px;
-  font-weight: bold;
+	padding: 10px;
+	font-size: 20px;
+	font-weight: bold;
+}
+
+.error {
+	color: red;
+	font-size: 23px;
 }

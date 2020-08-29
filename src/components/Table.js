@@ -7,7 +7,7 @@ const Table = (props) => {
 				<tr>
 					<td>p</td>
 					<td>q</td>
-					<td>Some Operation</td>
+					<td>p {props.operation} q</td>
 				</tr>
 				<tr>
 					<td>T</td>
