@@ -12,18 +12,22 @@ const Table = (props) => {
 				<tr>
 					<td>T</td>
 					<td>T</td>
+					<td>{}</td>
 				</tr>
 				<tr>
 					<td>T</td>
 					<td>F</td>
+					<td>{}</td>
 				</tr>
 				<tr>
 					<td>F</td>
 					<td>T</td>
+					<td>{}</td>
 				</tr>
 				<tr>
 					<td>F</td>
 					<td>F</td>
+					<td>{}</td>
 				</tr>
 			</table>
 		</div>

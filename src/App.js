@@ -5,24 +5,52 @@ export default class App extends React.Component {
 	constructor(props) {
 		super(props)
 		this.state = {
-			formula: '→',
+			operation: '→',
 			error: false,
 		}
 		this.handleChange = this.handleChange.bind(this)
 	}
 
+	changeSymbol = (symbol) => {
+		if (symbol === '&&' || symbol === '/\\' || symbol.toLowerCase() === 'and') {
+			return '∧'
+		} else if (
+			symbol === '||' ||
+			symbol === '\\/' ||
+			symbol === 'v' ||
+			symbol.toLowerCase() === 'or'
+		) {
+			return '∨'
+		} else if (symbol === '->' || symbol.toLowerCase() === 'if') {
+			return '→'
+		} else if (symbol === '<->' || symbol.toLowerCase() === 'iff') {
+			return '⇔'
+		}
+	}
+
 	handleChange = (event) => {
-		let operations = ['&&', '||', '/', '/\\']
-		if (operations.includes(event.target.value)) {
+		let operations = [
+			'&&',
+			'||',
+			'\\/',
+			'/\\',
+			'->',
+			'<->',
+			'iff',
+			'if',
+			'or',
+			'and',
+		]
+		if (operations.includes(event.target.value.toLowerCase())) {
 			this.setState({
-				formula:
+				operation:
 					event.target.value.replace(/ /g, '') !== ''
-						? event.target.value
+						? this.changeSymbol(event.target.value)
 						: '→',
 				error: false,
 			})
 		} else if (event.target.value === '') {
-			this.setState({ formula: '→', error: false })
+			this.setState({ operation: '→', error: false })
 		} else {
 			this.setState({ error: true })
 		}
@@ -44,10 +72,11 @@ export default class App extends React.Component {
 						type="text"
 						value={this.state.value}
 						onChange={this.handleChange}
-						placeholder="Enter a formula"
+						placeholder="Enter an operation"
+						maxLength="3"
 					/>
 				</form>
-				<Table operation={this.state.formula} />
+				<Table operation={this.state.operation} />
 				<div className="error">
 					<h1>{this.state.error ? 'Please enter a valid operation' : ''}</h1>
 				</div>
