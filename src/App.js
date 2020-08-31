@@ -12,23 +12,25 @@ export default class App extends React.Component {
 	}
 
 	changeSymbol = (symbol) => {
-		if (symbol === '&&' || symbol === '/\\' || symbol.toLowerCase() === 'and') {
+		symbol = symbol.toLowerCase().replace(/ /g, '')
+		if (symbol === '&&' || symbol === '/\\' || symbol === 'and') {
 			return '∧'
 		} else if (
 			symbol === '||' ||
 			symbol === '\\/' ||
 			symbol === 'v' ||
-			symbol.toLowerCase() === 'or'
+			symbol === 'or'
 		) {
 			return '∨'
-		} else if (symbol === '->' || symbol.toLowerCase() === 'if') {
+		} else if (symbol === '->' || symbol === 'if') {
 			return '→'
-		} else if (symbol === '<->' || symbol.toLowerCase() === 'iff') {
+		} else if (symbol === '<->' || symbol === 'iff') {
 			return '⇔'
 		}
 	}
 
 	handleChange = (event) => {
+		event.target.value = event.target.value.toLowerCase().replace(/ /g, '')
 		let operations = [
 			'&&',
 			'||',
@@ -41,17 +43,17 @@ export default class App extends React.Component {
 			'or',
 			'and',
 		]
-		if (operations.includes(event.target.value.toLowerCase())) {
+		if (operations.includes(event.target.value)) {
 			this.setState({
 				operation:
-					event.target.value.replace(/ /g, '') !== ''
+					event.target.value !== ''
 						? this.changeSymbol(event.target.value)
 						: '→',
 				error: false,
 			})
 		} else if (event.target.value === '') {
 			this.setState({ operation: '→', error: false })
-		} else {
+		} else if (event.target.value.length >= 2) {
 			this.setState({ error: true })
 		}
 	}
